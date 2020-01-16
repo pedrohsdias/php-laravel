@@ -35,8 +35,3 @@ services:
 networks:
   backend:
     driver: bridge
-# docker exec -it php-laravel
-# shopt -s dotglob
-# mv ../projeto/* projeto/
-# chmod -R 777 . 
-# php projeto/artisan key:generate

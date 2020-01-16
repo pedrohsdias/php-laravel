@@ -22,7 +22,9 @@ RUN docker-php-ext-install mysqli pdo_mysql bcmath \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable xdebug
 
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 COPY --from=composer /app /var/www/
-ENTRYPOINT ["docker-entrypoint.sh"]
+
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
